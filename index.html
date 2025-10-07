@@ -158,6 +158,39 @@
             color: var(--cor-principal);
         }
 
+        /* Novas regras para a seção de Contato */
+        #contato {
+            background-color: var(--cor-principal);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        #contato h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        #contato .lead {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #contato .social-icons-lg a {
+            color: white;
+            font-size: 2.5rem; /* Ícones maiores */
+            margin: 0 15px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        #contato .social-icons-lg a:hover {
+            color: var(--cor-secundaria); /* Cor de destaque ao passar o mouse */
+            transform: translateY(-5px); /* Efeito de elevação */
+        }
+
 
         @media (max-width: 768px) {
             #inicio h1 { font-size: 2.5rem !important; }
@@ -167,8 +200,17 @@
             .carousel-item img { height: 250px; }
             #inicio { padding-top: 100px; padding-bottom: 80px; }
             .video-vertical-container { margin-bottom: 2rem; }
-            footer { text-align: center; }
-            footer .social-icons { margin-top: 20px; }
+            
+            /* Melhorias no footer para mobile */
+            footer .col-md-4 {
+                text-align: center !important; /* Centraliza o texto em mobile */
+                margin-bottom: 30px; /* Adiciona espaço entre as colunas */
+            }
+            footer .col-md-4:last-child {
+                margin-bottom: 0;
+            }
+            footer .social-icons { margin-top: 15px; margin-bottom: 20px; } /* Ajusta margens */
+            footer h5 { margin-bottom: 15px; } /* Ajusta margem dos títulos */
         }
     </style>
 </head>
@@ -188,7 +230,6 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
                     <li class="nav-item"><a class="nav-link" href="#downloads">Downloads</a></li>
-                </ul>
             </div>
         </div>
     </nav>
@@ -456,17 +497,18 @@
                 </div>
             </div>
         </section>
+
     </main>
 
 
     <footer class="text-white">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mb-4 mb-md-0 text-center text-md-start">
+                <div class="col-md-4 mb-4 mb-md-0">
                     <h5>Portfólio Inclusão Digital</h5>
                     <p>Facilitando o acesso à tecnologia e abrindo novas portas para a comunidade.</p>
                 </div>
-                <div class="col-md-4 mb-4 mb-md-0 text-center">
+                <div class="col-md-4 mb-4 mb-md-0">
                     <h5>Links Rápidos</h5>
                     <ul class="list-unstyled">
                         <li><a href="#inicio">Início</a></li>
@@ -474,13 +516,13 @@
                         <li><a href="#conteudo">Conteúdo</a></li>
                         <li><a href="#depoimentos">Depoimentos</a></li>
                         <li><a href="#downloads">Downloads</a></li>
-                    </ul>
+                        <li><a href="#contato">Contato</a></li> </ul>
                 </div>
-                <div class="col-md-4 text-center text-md-end">
+                <div class="col-md-4">
                     <h5>Conecte-se</h5>
                     <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/lucas-vinícius-3102a22b4" class="me-2"><i class="bi bi-linkedin"></i></a>
-                        <a href="https://github.com/LucasdevBastos"><i class="bi bi-github"></i></a>
+                        <a href="https://www.linkedin.com/in/lucas-vinícius-3102a22b4" target="_blank" class="me-2"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://github.com/LucasdevBastos" target="_blank"><i class="bi bi-github"></i></a>
                     </div>
                     <p class="mt-3 mb-0">Desenvolvido com ❤️ por Lucas Vinicius.<br>&copy; 2025 Portfólio Inclusão Digital. Todos os direitos reservados.</p>
                 </div>
