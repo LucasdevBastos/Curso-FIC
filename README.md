@@ -65,5 +65,4 @@ Sinta-se à vontade para usar, modificar e compartilhar.
 🖥️ *“A tecnologia só é inclusão quando é acessível para todos.”*
 
 
-## 📁 Estrutura do Projeto
 
