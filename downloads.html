@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Downloads - Portfólio Inclusão Digital</title>
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <style>
+    :root{
+      --cor-principal:#127a91;
+      --cor-secundaria:#f0f8fa;
+      --cor-escura:#0a3f4a;
+      --cor-texto:#1d1f22;
+      --grad-hero:linear-gradient(135deg,#0f6e84 0%,#1794ae 50%,#30c0d8 100%);
+    }
+
+    html{scroll-behavior:auto}
+    body{
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
+      color:var(--cor-texto);
+      overflow-x:hidden;
+      background:var(--cor-secundaria);
+    }
+
+    /* NAV */
+    .navbar{
+      --bs-navbar-padding-y:.9rem;
+      background:rgba(10,63,74,.55);
+      backdrop-filter:saturate(140%) blur(8px);
+      transition:box-shadow .2s ease,background .2s ease;
+    }
+    .navbar.scrolled{box-shadow:0 8px 24px rgba(0,0,0,.08);background:rgba(10,63,74,.85)}
+    .navbar-brand{font-weight:700;letter-spacing:.3px}
+    .navbar-brand img{height:38px}
+    .nav-link{color:rgba(255,255,255,.9)!important;font-weight:600}
+    .nav-link:hover,.nav-link:focus,.nav-link.active{color:#fff!important}
+
+    /* HEADER */
+    .page-header{
+      padding:140px 0 60px;
+      background:var(--cor-escura);
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+    .page-header::after{
+      content:"";position:absolute;inset:0;
+      background:radial-gradient(1200px 400px at 70% -10%, rgba(255,255,255,.08), transparent 60%);
+      pointer-events:none;
+    }
+    .page-header h1{font-family:'Montserrat',sans-serif;font-weight:800}
+    .page-header .lead{color:rgba(255,255,255,.85)}
+
+    /* SEÇÕES */
+    section{padding:80px 0}
+
+    .section-title{font-family:'Montserrat',sans-serif;font-weight:800;letter-spacing:.2px;margin-bottom:2.25rem}
+
+    /* CARDS */
+    .card-elev{
+      background:#fff;border:0;border-radius:18px;
+      box-shadow:0 20px 40px rgba(0,0,0,.08);
+      padding:26px;height:100%;
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .card-elev:hover{transform:translateY(-3px);box-shadow:0 24px 48px rgba(0,0,0,.10)}
+    .btn-primary{background:var(--cor-principal);border-color:var(--cor-principal)}
+    .btn-primary:hover{background:#0e6073;border-color:#0e6073}
+
+    .meta{font-size:.85rem;color:#6c757d}
+    .tag{font-size:.74rem;background:var(--cor-secundaria);padding:.2rem .5rem;border-radius:999px;margin-right:.35rem}
+
+    /* RODAPÉ */
+    footer{background:#0f2f37;color:rgba(255,255,255,.85);padding:50px 0 20px}
+    footer a{color:rgba(255,255,255,.9);text-decoration:none}
+    footer a:hover{color:#fff}
+
+    /* ACESSIBILIDADE / MOTION */
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolled" role="navigation" aria-label="Navegação principal">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="img/Logo.png" alt="Logo do Projeto" onerror="this.src='https://placehold.co/120x38/127a91/ffffff?text=Logo'" class="me-2" loading="lazy">
+        Inclusão Digital
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="sobre.html">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="downloads.html">Downloads</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="page-header">
+    <div class="container text-center">
+      <h1 data-aos="fade-up"><i class="bi bi-cloud-arrow-down-fill me-2"></i>Central de Downloads</h1>
+      <p class="lead" data-aos="fade-up" data-aos-delay="100">Baixe os guias em PDF utilizados em sala.</p>
+
+      <!-- Busca / Filtro -->
+      <div class="row justify-content-center mt-4" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-lg-6">
+          <div class="input-group">
+            <span class="input-group-text" id="lbl-busca"><i class="bi bi-search"></i></span>
+            <input id="busca" type="search" class="form-control" placeholder="Filtrar por título, tema ou palavra-chave..." aria-describedby="lbl-busca" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LISTA -->
+  <section style="background:#fff;">
+    <div class="container">
+      <div id="grid" class="row g-3" data-aos="fade-up" data-aos-delay="100">
+
+        <!-- Card: Informática Básica -->
+        <div class="col-sm-6 col-lg-4" data-tags="informática basica hardware software internet fundamentos">
+          <div class="card-elev h-100 d-flex flex-column">
+            <div class="d-flex align-items-center mb-2">
+              <i class="bi bi-file-earmark-pdf fs-4 me-2 text-primary" aria-hidden="true"></i>
+              <h6 class="mb-0">Informática Básica</h6>
+            </div>
+            <p class="text-muted small mb-2">Conceitos de hardware, software e internet.</p>
+            <div class="meta mb-3">
+              <span class="tag">PDF</span><span class="tag">Aula</span><span class="tag">Fundamentos</span>
+            </div>
+            <div class="mt-auto d-flex gap-2">
+              <a href="downloads/InformaticaBasica.pdf" class="btn btn-primary flex-fill" download>
+                <i class="bi bi-download me-2"></i>Baixar PDF
+              </a>
+              <button class="btn btn-outline-secondary" data-copy="downloads/InformaticaBasica.pdf" aria-label="Copiar link de Informática Básica">
+                <i class="bi bi-clipboard"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Google Docs -->
+        <div class="col-sm-6 col-lg-4" data-tags="google docs editor texto colaboração formatação">
+          <div class="card-elev h-100 d-flex flex-column">
+            <div class="d-flex align-items-center mb-2">
+              <i class="bi bi-file-earmark-pdf fs-4 me-2 text-primary" aria-hidden="true"></i>
+              <h6 class="mb-0">Google Docs</h6>
+            </div>
+            <p class="text-muted small mb-2">Formatação, colaboração e inserções.</p>
+            <div class="meta mb-3">
+              <span class="tag">PDF</span><span class="tag">Google</span>
+            </div>
+            <div class="mt-auto d-flex gap-2">
+              <!-- Dica: evite espaços no nome do arquivo; prefira GoogleDocs.pdf -->
+              <a href="downloads/GOOGLE%20DOCS.pdf" class="btn btn-primary flex-fill" download>
+                <i class="bi bi-download me-2"></i>Baixar PDF
+              </a>
+              <button class="btn btn-outline-secondary" data-copy="downloads/GOOGLE%20DOCS.pdf" aria-label="Copiar link de Google Docs">
+                <i class="bi bi-clipboard"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Google Planilhas -->
+        <div class="col-sm-6 col-lg-4" data-tags="google planilhas excel formulas filtros gráficos">
+          <div class="card-elev h-100 d-flex flex-column">
+            <div class="d-flex align-items-center mb-2">
+              <i class="bi bi-file-earmark-pdf fs-4 me-2 text-primary" aria-hidden="true"></i>
+              <h6 class="mb-0">Google Planilhas</h6>
+            </div>
+            <p class="text-muted small mb-2">Fórmulas, filtros e gráficos básicos.</p>
+            <div class="meta mb-3">
+              <span class="tag">PDF</span><span class="tag">Planilhas</span>
+            </div>
+            <div class="mt-auto d-flex gap-2">
+              <a href="downloads/GooglePlanilhas.pdf" class="btn btn-primary flex-fill" download>
+                <i class="bi bi-download me-2"></i>Baixar PDF
+              </a>
+              <button class="btn btn-outline-secondary" data-copy="downloads/GooglePlanilhas.pdf" aria-label="Copiar link de Google Planilhas">
+                <i class="bi bi-clipboard"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Canva -->
+        <div class="col-sm-6 col-lg-4" data-tags="canva design modelos exportação apresentação">
+          <div class="card-elev h-100 d-flex flex-column">
+            <div class="d-flex align-items-center mb-2">
+              <i class="bi bi-file-earmark-pdf fs-4 me-2 text-primary" aria-hidden="true"></i>
+              <h6 class="mb-0">Canva</h6>
+            </div>
+            <p class="text-muted small mb-2">Modelos, elementos e exportação.</p>
+            <div class="meta mb-3">
+              <span class="tag">PDF</span><span class="tag">Design</span>
+            </div>
+            <div class="mt-auto d-flex gap-2">
+              <a href="downloads/Canva.pdf" class="btn btn-primary flex-fill" download>
+                <i class="bi bi-download me-2"></i>Baixar PDF
+              </a>
+              <button class="btn btn-outline-secondary" data-copy="downloads/Canva.pdf" aria-label="Copiar link de Canva">
+                <i class="bi bi-clipboard"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Gov.br -->
+        <div class="col-sm-6 col-lg-4" data-tags="govbr governo conta segurança níveis selos">
+          <div class="card-elev h-100 d-flex flex-column">
+            <div class="d-flex align-items-center mb-2">
+              <i class="bi bi-file-earmark-pdf fs-4 me-2 text-primary" aria-hidden="true"></i>
+              <h6 class="mb-0">Gov.br</h6>
+            </div>
+            <p class="text-muted small mb-2">Conta, níveis e segurança.</p>
+            <div class="meta mb-3">
+              <span class="tag">PDF</span><span class="tag">Cidadania</span>
+            </div>
+            <div class="mt-auto d-flex gap-2">
+              <a href="downloads/GovBR.pdf" class="btn btn-primary flex-fill" download>
+                <i class="bi bi-download me-2"></i>Baixar PDF
+              </a>
+              <button class="btn btn-outline-secondary" data-copy="downloads/GovBR.pdf" aria-label="Copiar link de Gov.br">
+                <i class="bi bi-clipboard"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sem resultados -->
+      <div id="sem-resultados" class="text-center text-muted mt-4 d-none">
+        <i class="bi bi-emoji-frown fs-3 d-block mb-2"></i>
+        Nenhum material encontrado para esse filtro.
+      </div>
+    </div>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4">
+          <h5 class="fw-bold">Portfólio Inclusão Digital</h5>
+          <p class="mb-0">Facilitando o acesso à tecnologia e abrindo novas portas para a comunidade.</p>
+        </div>
+        <div class="col-md-4">
+          <h5 class="fw-bold">Links</h5>
+          <ul class="list-unstyled mb-0">
+            <li><a href="index.html#inicio">Início</a></li>
+            <li><a href="sobre.html">Nossa Turma</a></li>
+            <li><a href="index.html#sobre">Sobre o Projeto</a></li>
+            <li><a href="index.html#conteudo">Conteúdo</a></li>
+            <li><a href="index.html#depoimentos">Depoimentos</a></li>
+            <li><a href="downloads.html">Downloads</a></li>
+            <li><a href="index.html#contato">Contato</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 class="fw-bold">Conecte-se</h5>
+          <div class="d-flex gap-3 fs-4">
+            <a href="https://www.linkedin.com/in/lucas-vinícius-3102a22b4" target="_blank" rel="noopener" aria-label="LinkedIn do Lucas"><i class="bi bi-linkedin"></i></a>
+            <a href="https://github.com/LucasdevBastos" target="_blank" rel="noopener" aria-label="GitHub do Lucas"><i class="bi bi-github"></i></a>
+          </div>
+          <p class="mt-3 mb-0 small">Desenvolvido com ❤️ por Lucas Vinícius.<br>© 2025 Portfólio Inclusão Digital.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 650, once: true, offset: 120, throttleDelay: 150, debounceDelay: 150 });
+
+    // Filtro por busca
+    const inputBusca = document.getElementById('busca');
+    const grid = document.getElementById('grid');
+    const semResultados = document.getElementById('sem-resultados');
+
+    function normaliza(t){ return t.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu,''); }
+
+    inputBusca?.addEventListener('input', () => {
+      const termo = normaliza(inputBusca.value.trim());
+      let visiveis = 0;
+
+      Array.from(grid.children).forEach(col => {
+        const tags = normaliza(col.getAttribute('data-tags') || '');
+        const titulo = normaliza(col.querySelector('h6')?.textContent || '');
+        const desc = normaliza(col.querySelector('p.text-muted')?.textContent || '');
+        const content = `${tags} ${titulo} ${desc}`;
+        const show = !termo || content.includes(termo);
+        col.classList.toggle('d-none', !show);
+        if(show) visiveis++;
+      });
+
+      semResultados.classList.toggle('d-none', visiveis > 0);
+    });
+
+    // Copiar link
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-copy]');
+      if(!btn) return;
+      const link = btn.getAttribute('data-copy');
+      navigator.clipboard.writeText(location.origin + '/' + link).then(() => {
+        const prev = btn.innerHTML;
+        btn.innerHTML = '<i class="bi bi-check2"></i>';
+        setTimeout(()=> btn.innerHTML = prev, 900);
+      }).catch(()=> alert('Não foi possível copiar o link.'));
+    });
+  </script>
+</body>
+</html>
