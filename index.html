@@ -1,585 +1,528 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio do Projeto de Inclusão Digital</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto:wght@400;500&display=swap&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfólio do Projeto de Inclusão Digital</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 
-    <style>
-        :root {
-            --cor-principal: #1794ae;
-            --cor-secundaria: #f0f8fa;
-            --cor-texto: #333;
-            --cor-titulo: #222;
-        }
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-        html {
-            scroll-behavior: smooth;
-        }
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-        body {
-            position: relative; 
-            font-family: 'Roboto', sans-serif;
-            font-size: 1.05rem;
-            color: var(--cor-texto);
-            line-height: 1.6;
-        }
+  <style>
+    :root {
+      --cor-principal: #127a91; /* mantém a paleta */
+      --cor-secundaria: #f0f8fa;
+      --cor-escura: #0a3f4a;
+      --cor-texto: #1d1f22;
+      --grad-hero: linear-gradient(135deg, #0f6e84 0%, #1794ae 50%, #30c0d8 100%);
+    }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--cor-titulo);
-            font-weight: 700;
-        }
+    html { scroll-behavior: auto; }
 
-        section {
-            padding-top: 80px;
-            padding-bottom: 60px;
-            overflow-x: hidden; 
-        }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+      color: var(--cor-texto);
+      overflow-x: hidden;
+      background: #fff;
+    }
 
-        .navbar { background-color: var(--cor-principal) !important; padding-top: 0.75rem; padding-bottom: 0.75rem; transition: background-color 0.3s ease; }
-        .navbar-brand img { height: 40px; margin-right: 10px; }
-        .nav-link { color: rgba(255, 255, 255, 0.8) !important; font-weight: 500; transition: color 0.3s ease; }
-        .nav-link:hover, .nav-link.active { color: white !important; }
-        .bg-custom-primary { background-color: var(--cor-principal) !important; }
-        .text-custom-primary { color: var(--cor-principal) !important; }
-        .bg-light-custom { background-color: var(--cor-secundaria) !important; }
-        .btn-primary { background-color: var(--cor-principal); border-color: var(--cor-principal); padding: 12px 25px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; }
-        .btn-primary:hover { background-color: #127a91; border-color: #127a91; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        
-        .section-title { font-size: 2.8rem; margin-bottom: 3rem; position: relative; padding-bottom: 15px; }
-        .section-title::after { content: ''; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 80px; height: 4px; background-color: var(--cor-principal); border-radius: 2px; }
-        .section-title i { margin-right: 15px; color: var(--cor-principal); }
+    /* NAV */
+    .navbar {
+      --bs-navbar-padding-y: .9rem;
+      background: rgba(10, 63, 74, 0.55);
+      backdrop-filter: saturate(140%) blur(8px);
+      transition: box-shadow .2s ease, background .2s ease;
+    }
+    .navbar.scrolled { box-shadow: 0 8px 24px rgba(0,0,0,.08); background: rgba(10,63,74,.85); }
+    .navbar-brand { font-weight: 700; letter-spacing: .3px; }
+    .navbar-brand img { height: 38px; }
+    .nav-link { color: rgba(255,255,255,.9) !important; font-weight: 600; }
+    .nav-link:hover, .nav-link:focus { color: #fff !important; }
 
-        .content-card { background-color: white; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.08); padding: 30px; transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; }
-        .content-card h4 { color: var(--cor-principal); margin-bottom: 1rem; font-size: 1.5rem; font-weight: 600; }
-        .testimonial-card { background-color: white; border-left: 5px solid var(--cor-principal); padding: 25px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.07); }
-        .testimonial-card p { font-style: italic; color: #555; }
-        .testimonial-card .author { font-weight: 700; color: var(--cor-titulo); margin-top: 15px; display: block; }
+    .btn-primary { background: var(--cor-principal); border-color: var(--cor-principal); }
+    .btn-primary:hover { background: #0e6073; border-color: #0e6073; }
+    .btn-ghost {
+      background: rgba(255,255,255,.18);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.35);
+      backdrop-filter: blur(6px);
+    }
 
-        /* AJUSTE: Seção de início menor */
-        #inicio { 
-            padding-top: 120px; /* Reduzido */
-            padding-bottom: 100px; /* Reduzido */
-            background-color: var(--cor-principal); 
-            color: white; 
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3); 
-        }
-        #inicio h1 { 
-            color: white; 
-            font-size: 3.5rem; /* Ajustado */
-            margin-bottom: 1.5rem; 
-            line-height: 1.2;
-        }
-        #inicio p.lead {
-            font-size: 1.3rem; 
-            max-width: 800px; 
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 2.5rem;
-        }
-        #inicio .btn-light {
-            background-color: white;
-            color: var(--cor-principal);
-            border-color: white;
-            padding: 14px 30px;
-            font-size: 1.05rem;
-            border-radius: 50px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-        #inicio .btn-light:hover {
-            background-color: var(--cor-secundaria);
-            color: var(--cor-principal);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-        }
+    /* HERO NOVO */
+    .hero {
+      position: relative;
+      min-height: 100svh; /* ocupa a tela inteira */
+      display: grid;
+      align-items: center;
+      padding-top: 96px; /* espaço da navbar */
+      background: var(--grad-hero);
+      color: #fff;
+      isolation: isolate;
+    }
+    .hero::before { /* padrão de círculos suaves */
+      content: "";
+      position: absolute; inset: 0;
+      background-image: radial-gradient( hsla(0,0%,100%,.16) 1px, transparent 1px );
+      background-size: 22px 22px;
+      mask-image: radial-gradient(ellipse at 60% 40%, rgba(0,0,0,.9), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-blob {
+      position: absolute; inset: auto -120px -160px auto; width: 680px; height: 680px;
+      background: radial-gradient( circle at 30% 30%, rgba(255,255,255,.28), rgba(255,255,255,0) 60% );
+      filter: blur(26px);
+      z-index: -1;
+    }
 
-        .carousel-item img { height: 500px; object-fit: cover; border-radius: 15px; }
-        .carousel-caption { background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 10%, transparent); border-radius: 0 0 15px 15px; bottom: 0; padding-bottom: 1.25rem; text-shadow: 0 2px 4px rgba(0,0,0,0.6); }
-        .carousel-caption h5, .carousel-caption p { color: white; }
+    .hero .kicker { display: inline-flex; align-items: center; gap: .5rem; padding: .4rem .8rem; border-radius: 999px; background: rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.35); font-weight: 600; }
+    .hero h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; line-height: 1.08; letter-spacing: .2px; margin: .75rem 0 1rem; font-size: clamp(2.2rem, 4.2vw + .5rem, 3.6rem); }
+    .hero p.lead { font-size: clamp(1.05rem, 1.15rem + .3vw, 1.25rem); color: rgba(255,255,255,.95); max-width: 60ch; }
 
-        .ratio-9x16 { --bs-aspect-ratio: calc(16 / 9 * 100%); }
-        .video-vertical-container video { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+    .hero .cta-wrap { display:flex; flex-wrap:wrap; gap:.8rem; margin-top: 1.25rem; }
+    .hero .stat {
+      display:flex; align-items:center; gap:.75rem; padding:.75rem 1rem; border-radius: 14px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.3);
+    }
 
-        .youtube-lazyload {
-            position: relative;
-            cursor: pointer;
-            background-color: #000;
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 */
-            overflow: hidden;
-        }
-        .youtube-lazyload img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; transition: opacity 0.3s; }
-        .youtube-lazyload .play-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 42px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 48"><path fill="%23f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.01-7.03C58.89.4 54.77 0 34 0 13.23 0 9.11.4 6.49.71 3.97 2.33 2.26 4.81 1.48 7.74 0 10.67 0 13.44 0 24 0 34.56 0 37.33 1.48 40.26 2.26 43.19 3.97 45.67 6.49 47.29 9.11 47.6 13.23 48 34 48s24.77-.4 27.39-.71c2.52-1.62 4.23-4.1 5.01-7.03C68 37.33 68 34.56 68 24s-.02-10.67-1.48-13.26zm-21.36 14.8V28l-8.6 4.96v-9.92l8.6 4.96z" clip-rule="evenodd"/></svg>') no-repeat center; opacity: 0.8; transition: opacity 0.3s; }
-        .youtube-lazyload:hover .play-button { opacity: 1; }
-        .youtube-lazyload.loaded .play-button, .youtube-lazyload.loaded img { display: none; }
+    /* cards seção */
+    section { padding: 80px 0; content-visibility: auto; contain-intrinsic-size: 1px 1000px; }
+    .section-title { font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: .2px; margin-bottom: 2.25rem; }
 
-        footer { 
-            background-color: var(--cor-titulo) !important; 
-            color: rgba(255, 255, 255, 0.7); 
-            padding: 50px 0 20px; 
-            font-size: 0.95rem; 
-        }
+    .card-elev { background: #fff; border: 0; border-radius: 18px; box-shadow: 0 20px 40px rgba(0,0,0,.08); padding: 26px; height: 100%; }
+    .card-elev .icon {
+      width: 42px; height: 42px; display:grid; place-items:center; border-radius: 12px;
+      background: rgba(18,122,145,.1); color: var(--cor-principal); font-size: 1.15rem; font-weight: 700; margin-bottom: .75rem;
+    }
 
-        footer h5 {
-            color: white;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
+    /* carrossel novo (estilo moldura) */
+    .frame { border-radius: 18px; overflow: hidden; box-shadow: 0 16px 36px rgba(0,0,0,.12); }
+    .carousel .carousel-caption { background: linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,.0)); left:0; right:0; bottom:0; padding-bottom:1.25rem; }
 
-        footer .list-unstyled li a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+    /* seção contato */
+    .cta-section { background: linear-gradient(135deg, #0e6073 0%, #127a91 60%); color: #fff; border-radius: 26px; padding: 40px; position: relative; overflow: hidden; }
+    .cta-section::after { content:""; position:absolute; inset: -40px -80px auto auto; width: 360px; height: 360px; background: radial-gradient(circle, rgba(255,255,255,.22), transparent 60%); filter: blur(18px); }
 
-        footer .list-unstyled li a:hover {
-            color: white;
-        }
+    /* rodapé */
+    footer { background: #0f2f37; color: rgba(255,255,255,.85); padding: 50px 0 20px; }
+    footer a { color: rgba(255,255,255,.9); text-decoration: none; }
+    footer a:hover { color: #fff; }
 
-        footer .social-icons a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
+    /* ondas divisórias */
+    .wave-top { display:block; line-height:0; transform: translateY(1px); }
 
-        footer .social-icons a:hover {
-            color: var(--cor-principal);
-        }
-
-        /* Novas regras para a seção de Contato */
-        #contato {
-            background-color: var(--cor-principal);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        #contato h2 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-
-        #contato .lead {
-            font-size: 1.25rem;
-            margin-bottom: 3rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        #contato .social-icons-lg a {
-            color: white;
-            font-size: 2.5rem; /* Ícones maiores */
-            margin: 0 15px;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        #contato .social-icons-lg a:hover {
-            color: var(--cor-secundaria); /* Cor de destaque ao passar o mouse */
-            transform: translateY(-5px); /* Efeito de elevação */
-        }
-
-
-        @media (max-width: 768px) {
-            #inicio h1 { font-size: 2.5rem !important; }
-            #inicio p.lead { font-size: 1.15rem; margin-bottom: 2rem; }
-            .section-title { font-size: 2.2rem; margin-bottom: 2.5rem; }
-            section { padding-top: 60px; padding-bottom: 40px; }
-            .carousel-item img { height: 250px; }
-            #inicio { padding-top: 100px; padding-bottom: 80px; }
-            .video-vertical-container { margin-bottom: 2rem; }
-            
-            /* Melhorias no footer para mobile */
-            footer .col-md-4 {
-                text-align: center !important; /* Centraliza o texto em mobile */
-                margin-bottom: 30px; /* Adiciona espaço entre as colunas */
-            }
-            footer .col-md-4:last-child {
-                margin-bottom: 0;
-            }
-            footer .social-icons { margin-top: 15px; margin-bottom: 20px; } /* Ajusta margens */
-            footer h5 { margin-bottom: 15px; } /* Ajusta margem dos títulos */
-        }
-    </style>
+    /* acessibilidade / motion */
+    @media (prefers-reduced-motion: reduce) {
+      *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count:1 !important; transition-duration: .01ms !important; }
+    }
+      .ratio-9x16 { --bs-aspect-ratio: 177.78%; } /* 9:16 vertical */
+  </style>
 </head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#inicio">
+        <img src="img/Logo.png" alt="Logo do Projeto" onerror="this.src='https://placehold.co/120x38/127a91/ffffff?text=Logo'" class="me-2">
+        Inclusão Digital
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#downloads">Downloads</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-<body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
-
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#inicio">
-                <img src="img/Logo.png" alt="Logo do Projeto de Inclusão Digital" class="img-fluid" onerror="this.onerror=null;this.src='https://placehold.co/150x40/ffffff/1794ae?text=Logo';"> 
-                <span class="ms-2">Portfólio Inclusão Digital</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#downloads">Downloads</a></li>
-            </div>
+  <!-- HERO -->
+  <header id="inicio" class="hero">
+    <div class="hero-blob"></div>
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7" data-aos="fade-right">
+          <span class="kicker"><i class="bi bi-stars"></i> 1ª edição concluída</span>
+          <h1>
+            Tecnologia que abre portas: <br/>
+            <span style="opacity:.95">portfólio do Projeto de Inclusão Digital</span>
+          </h1>
+          <p class="lead">
+            Conheça resultados, materiais e depoimentos de um curso feito para incluir, capacitar e inspirar nossa comunidade.
+          </p>
+          <div class="cta-wrap">
+            <a href="#downloads" class="btn btn-light text-dark fw-bold px-4 py-2"><i class="bi bi-cloud-arrow-down me-2"></i>Baixar materiais</a>
+            <a href="#sobre" class="btn btn-ghost fw-semibold px-4 py-2"><i class="bi bi-info-circle me-2"></i>Saiba mais</a>
+          </div>
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <div class="stat"><i class="bi bi-people"></i> +60 participantes</div>
+            <div class="stat"><i class="bi bi-mortarboard"></i> 20h de formação</div>
+            <div class="stat"><i class="bi bi-pc-display"></i> Conteúdo prático</div>
+          </div>
         </div>
-    </nav>
-    
-    <main>
-        <section id="inicio" class="text-center">
-            <div class="container" data-aos="fade-in" data-aos-duration="1000">
-                <h1 class="display-4 mb-3"><i class="bi bi-rocket-takeoff me-3"></i>Portfólio do Projeto de Inclusão Digital</h1>
-                <p class="lead mb-4">
-                    Descubra os resultados e a inspiradora jornada da nossa primeira edição do <strong>curso de informática básica</strong> para a comunidade, capacitando indivíduos e criando novas oportunidades através da tecnologia.
-                </p>
-                <a href="#sobre-projeto" class="btn btn-light mt-3" data-aos="fade-up" data-aos-delay="500">
-                    <i class="bi bi-info-circle-fill me-2"></i> Saiba Mais Sobre o Projeto
-                </a>
+        <div class="col-lg-5" data-aos="fade-left">
+          <div class="frame">
+            <div id="carouselHero" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="img/Turma1.jpg" class="d-block w-100" alt="Aula prática com a turma" height="420" style="object-fit:cover;" loading="eager">
+                  <div class="carousel-caption"><h5>Aprendizado na prática</h5></div>
+                </div>
+                <div class="carousel-item">
+                  <img src="img/Turma2.jpg" class="d-block w-100" alt="Monitores apoiando alunos" height="420" style="object-fit:cover;" loading="lazy">
+                  <div class="carousel-caption"><h5>Mentoria próxima</h5></div>
+                </div>
+                <div class="carousel-item">
+                  <img src="img/Turma3.jpg" class="d-block w-100" alt="Encerramento com certificados" height="420" style="object-fit:cover;" loading="lazy">
+                  <div class="carousel-caption"><h5>Encerramento com orgulho</h5></div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselHero" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselHero" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+              </button>
             </div>
-        </section>
-
-        <section id="turma" class="py-5 bg-light-custom">
-            <div class="container">
-                <h2 class="text-center section-title mb-5" data-aos="fade-up"><i class="bi bi-camera-fill"></i> Nossa Turma em Foco</h2>
-                <div id="carouselTurma" class="carousel slide" data-bs-ride="carousel" data-aos="fade-up" data-aos-delay="200">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselTurma" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselTurma" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselTurma" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="img/Turma1.jpg" class="d-block w-100" alt="Foto da turma 1: Alunos apresentando projetos" loading="eager" onerror="this.onerror=null;this.src='https://placehold.co/1200x500/cccccc/333333?text=Foto+da+Turma+1';">
-                            <div class="carousel-caption">
-                                <h5>Turma 1</h5>
-                                <p>Uma turma desenrolada, cheia de atitude e vontade de fazer acontecer.</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/Turma2.jpg" class="d-block w-100" alt="Foto da turma 2: Alunos em aula prática de informática" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/1200x500/cccccc/333333?text=Foto+da+Turma+2';">
-                            <div class="carousel-caption">
-                                <h5>Turma 2</h5>
-                                <p>Uma turma comunicativa, sempre com boas ideias e muita energia.</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/Turma3.jpg" class="d-block w-100" alt="Foto da turma 3: Grupo de alunos celebrando o fim do curso" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/1200x500/cccccc/333333?text=Foto+da+Turma+3';">
-                            <div class="carousel-caption">
-                                <h5>Turma 3</h5>
-                                <p>Uma turma animada e cheia de histórias pra contar — encerrando com chave de ouro.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselTurma" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselTurma" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section id="sobre-projeto" class="py-5">
-            <div class="container text-center">
-                <h2 class="section-title mb-4" data-aos="fade-up"><i class="bi bi-award-fill"></i> O Projeto de Inclusão Digital</h2>
-                
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-delay="100">
-                        <div class="video-vertical-container mx-auto" style="max-width: 350px;"> 
-                            <div class="ratio ratio-9x16 shadow-lg rounded">
-                                <video controls poster="img/capa-video.jpg" src="video/Video.mp4" type="video/mp4" preload="metadata" controlslist="nodownload" style="width: 100%; height: 100%;">
-                                    Seu navegador não suporta a tag de vídeo.
-                                </video>
-                            </div>
-                            <p class="text-center mt-3 text-muted">Assista ao vídeo para saber mais sobre o projeto!</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 text-lg-start" data-aos="fade-left" data-aos-delay="200">
-                        <p class="lead">
-                            Esta foi a <strong>primeira edição de um sonho</strong>: um projeto de inclusão digital pensado para a nossa comunidade. O objetivo foi oferecer, de forma gratuita e acolhedora, os conhecimentos essenciais de informática para todos que desejavam aprender e se conectar com o mundo digital.
-                        </p>
-                        <p class="mt-3">
-                            Acreditamos que o conhecimento em tecnologia abre portas, cria oportunidades e dá mais autonomia para as pessoas no dia a dia. Este site é uma celebração do esforço de todos os envolvidos e um material de apoio para que o aprendizado continue!
-                        </p>
-                    </div>
-                </div>
-
-                <div class="row g-4 mt-5 justify-content-center">
-                    <div class="col-md-6 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-                        <div class="content-card text-center d-flex flex-column">
-                            <div>
-                                <h4 class="h5"><i class="bi bi-person-video3"></i> A Professora</h4>
-                                <p>Com dedicação e paciência, nossa professora <strong>Ana Caroline de Sa e Silva</strong>, guiou cada passo do aprendizado, transformando conceitos complexos em conhecimento acessível para todos.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
-                        <div class="content-card text-center d-flex flex-column">
-                            <div>
-                                <h4 class="h5"><i class="bi bi-people-fill"></i> Os Monitores</h4>
-                                <p>Nossa incrível equipe de monitores <strong>Lucas Vinicius, Renê Faustinom, Alysson Mikael e Graciany Maria</strong> foi o apoio fundamental da turma, sempre prontos para tirar dúvidas com um sorriso no rosto.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="conteudo" class="py-5 bg-light-custom">
-            <div class="container">
-                <h2 class="text-center section-title mb-5" data-aos="fade-up"><i class="bi bi-book-half"></i> O que Nós Ensinamos</h2>
-                <div id="informatica-basica" class="mb-5">
-                    <div class="row g-4">
-                        <div class="col-md-6 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100"><div class="content-card text-center"><h4><i class="bi bi-cpu-fill mb-2"></i> Hardware</h4><p>São as partes físicas do computador, tudo aquilo que podemos tocar: processador, memória RAM, disco rígido (HD/SSD), monitor, teclado e mouse.</p></div></div>
-                        <div class="col-md-6 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200"><div class="content-card text-center"><h4><i class="bi bi-window-stack mb-2"></i> Software</h4><p>São os programas e instruções que fazem o hardware funcionar. Inclui os <strong>Sistemas Operacionais</strong> e os <strong>aplicativos</strong> que usamos.</p></div></div>
-                        <div class="col-md-12 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300"><div class="content-card text-center"><h4><i class="bi bi-globe2 mb-2"></i> Internet e Navegação</h4><p>É a rede mundial que conecta computadores. Usamos <strong>navegadores</strong> para acessar sites e <strong>buscadores</strong> para encontrar informações.</p></div></div>
-                    </div>
-                </div>
-                
-                <div id="google-docs" class="mb-5">
-                    <h3 class="text-center mb-4" data-aos="fade-up"><i class="bi bi-file-earmark-text-fill"></i> Google Docs</h3>
-                    <div class="row g-4 justify-content-center">
-                        <div class="col-lg-6" data-aos="fade-right">
-                            <div class="content-card d-flex flex-column">
-                                <div>
-                                    <h4>O que é e para que serve?</h4>
-                                    <p>O Google Docs é um editor de textos 100% online, perfeito para criar <strong>currículos, trabalhos e relatórios</strong>. Tudo fica salvo automaticamente na nuvem!</p>
-                                    <h4 class="mt-4">Dicas Essenciais</h4>
-                                    <ul><li><strong>Formatação de Texto:</strong> Use a barra de ferramentas para alterar a <strong>fonte</strong>, o <strong>tamanho</strong> e a <strong>cor</strong>.</li><li><strong>Listas e Alinhamento:</strong> Organize suas ideias com listas e use os botões de alinhamento.</li><li><strong>Inserir Imagens e Links:</strong> Vá ao menu "Inserir" para adicionar imagens ou links.</li></ul>
-                                </div>
-                                <div class="mt-auto pt-4 text-center">
-                                    <a href="downloads/GOOGLE DOCS.pdf" class="btn btn-primary"><i class="bi bi-cloud-arrow-down-fill me-2"></i> Baixar Guia em PDF</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 align-self-center" data-aos="fade-left">
-                            <div class="youtube-lazyload ratio ratio-16x9" data-embed="qzh5uwUjzlw">
-                                <img src="https://img.youtube.com/vi/qzh5uwUjzlw/hqdefault.jpg" alt="Tutorial Google Docs - Clique para reproduzir" loading="lazy">
-                                <div class="play-button"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="google-planilhas" class="mb-5">
-                    <h3 class="text-center mb-4" data-aos="fade-up"><i class="bi bi-grid-3x3-gap-fill"></i> Google Planilhas</h3>
-                    <div class="row g-4 justify-content-center">
-                        <div class="col-lg-6 align-self-center" data-aos="fade-right">
-                            <div class="youtube-lazyload ratio ratio-16x9" data-embed="ZsQEWyipvNs">
-                                <img src="https://img.youtube.com/vi/ZsQEWyipvNs/hqdefault.jpg" alt="Tutorial Google Planilhas - Clique para reproduzir" loading="lazy">
-                                <div class="play-button"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6" data-aos="fade-left">
-                            <div class="content-card d-flex flex-column">
-                                <div>
-                                    <h4>O que é e para que serve?</h4>
-                                    <p>É uma planilha digital ideal para <strong>organizar informações</strong>, <strong>criar listas</strong>, <strong>controlar finanças</strong> e fazer <strong>cálculos automáticos</strong> com fórmulas.</p>
-                                    <h4 class="mt-4">Primeiros Passos</h4>
-                                    <ul><li><strong>Entendendo as Células:</strong> Cada retângulo é uma célula (ex: A1, B2).</li><li><strong>Fórmulas Básicas:</strong> Comece com o sinal de igual (=). Para somar, use: <strong>=SOMA(A1:A2)</strong>.</li><li><strong>Formatando Células:</strong> Mude a cor de fundo ou formate números como moeda (R$).</li></ul>
-                                </div>
-                                <div class="mt-auto pt-4 text-center">
-                                    <a href="downloads/GooglePlanilhas.pdf" class="btn btn-primary"><i class="bi bi-cloud-arrow-down-fill me-2"></i> Baixar Guia em PDF</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="canva" class="mb-5">
-                    <h3 class="text-center mb-4" data-aos="fade-up"><i class="bi bi-palette-fill"></i> Canva</h3>
-                    <div class="row g-4 justify-content-center">
-                        <div class="col-lg-6" data-aos="fade-right">
-                            <div class="content-card d-flex flex-column">
-                                <div>
-                                    <h4>O que é e para que serve?</h4>
-                                    <p>O Canva é uma ferramenta de design gratuita para criar artes incríveis como <strong>posts para redes sociais, convites e apresentações</strong>, mesmo sem ser designer.</p>
-                                    <h4 class="mt-4">Como Criar sua Primeira Arte</h4>
-                                    <ul><li><strong>Use os Modelos:</strong> Pesquise o que você quer criar e escolha um design pronto para editar.</li><li><strong>Arraste e Solte:</strong> Personalize clicando nos elementos, trocando textos e arrastando suas imagens.</li><li><strong>Baixe sua Arte:</strong> Clique em "Compartilhar" e "Baixar" para salvar seu design como PNG ou PDF.</li></ul>
-                                </div>
-                                <div class="mt-auto pt-4 text-center">
-                                    <a href="downloads/Canva.pdf" class="btn btn-primary"><i class="bi bi-cloud-arrow-down-fill me-2"></i> Baixar Guia em PDF</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 align-self-center" data-aos="fade-left">
-                            <div class="youtube-lazyload ratio ratio-16x9" data-embed="31I3lxhWp08">
-                                <img src="https://img.youtube.com/vi/31I3lxhWp08/hqdefault.jpg" alt="Tutorial Canva - Clique para reproduzir" loading="lazy">
-                                <div class="play-button"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="gov">
-                    <h3 class="text-center mb-4" data-aos="fade-up"><i class="bi bi-shield-check"></i> Gov.br</h3>
-                    <div class="row g-4 justify-content-center">
-                        <div class="col-lg-6 align-self-center" data-aos="fade-right">
-                            <div class="youtube-lazyload ratio ratio-16x9" data-embed="Z9vdkqaukr0">
-                                <img src="https://img.youtube.com/vi/Z9vdkqaukr0/hqdefault.jpg" alt="Tutorial Gov.br - Clique para reproduzir" loading="lazy">
-                                <div class="play-button"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6" data-aos="fade-left">
-                            <div class="content-card d-flex flex-column">
-                                <div>
-                                    <h4>O que é e para que serve?</h4>
-                                    <p>O Gov.br é a plataforma do Governo Federal que unifica o acesso a <strong>milhares de serviços públicos digitais</strong>. Com uma única conta, você pode acessar serviços do INSS, Carteira de Trabalho Digital e muito mais.</p><h4 class="mt-4">Pontos Importantes</h4>
-                                    <ul><li><strong>Cadastro Único:</strong> Crie sua conta com seu CPF para ter acesso a tudo.</li><li><strong>Níveis de Segurança:</strong> Sua conta pode ser <strong>Bronze</strong>, <strong>Prata</strong> ou <strong>Ouro</strong>.</li><li><strong>App Gov.br:</strong> Baixe o aplicativo para facilitar o acesso e aumentar a segurança da sua conta.</li></ul>
-                                </div>
-                                <div class="mt-auto pt-4 text-center">
-                                    <a href="downloads/GovBR.pdf" class="btn btn-primary"><i class="bi bi-cloud-arrow-down-fill me-2"></i> Baixar Guia em PDF</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="depoimentos" class="py-5">
-            <div class="container">
-                <h2 class="text-center section-title mb-5" data-aos="fade-up"><i class="bi bi-chat-quote-fill"></i> A Voz dos Alunos</h2>
-                <div class="row g-4">
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="testimonial-card">
-                            <p>"Foi uma experiência ótima, cheia de aprendizados e momentos especiais. Concluo o curso com muita gratidão por tudo o que vivi e pelas pessoas incríveis que conheci ao longo dessa jornada. Cada aula foi uma oportunidade de crescer e acreditar mais em mim mesma."</p>
-                            <span class="author">- Marly Pereira de Lima Souza</span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="testimonial-card">
-                            <p>"Foi uma experiência muito boa, com aulas bem planejadas e cheias de aprendizado. Cada encontro foi uma oportunidade de conhecer algo novo e de ver o quanto é possível evoluir quando a gente se dedica. Foi um tempo que vou guardar com muito carinho."</p>
-                            <span class="author">- Maria Mirella de Souza Silva</span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="testimonial-card">
-                            <p>"A experiência no curso foi fundamental para o meu crescimento profissional e pessoal. Todas as oportunidades durante as aulas contribuíram para ampliar meus conhecimentos e me preparar melhor para o futuro. Sou grata por cada momento e aprendizado vivido."</p>
-                            <span class="author">- Aila Kássia de Souza Santos</span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="testimonial-card">
-                            <p>"Foi uma experiência muito proveitosa! Depois de muitos anos desde meu último curso, finalmente consegui me reciclar e atualizar meus conhecimentos em informática."</p>
-                            <span class="author">- Wila Tamara Santos Silva</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="downloads" class="py-5 text-center bg-light-custom">
-            <div class="container">
-                <h2 class="section-title mb-5" data-aos="fade-up"><i class="bi bi-cloud-arrow-down-fill"></i> Central de Downloads</h2>
-                <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Aqui você encontra todos os guias em PDF de cada assunto estudado.</p>
-                <div class="d-flex flex-wrap justify-content-center gap-3">
-                    <a href="downloads/InformaticaBasica.pdf" class="btn btn-primary" data-aos="fade-up" data-aos-delay="200"><i class="bi bi-file-earmark-pdf-fill me-2"></i> Informática Básica.pdf</a>
-                    <a href="downloads/GOOGLE DOCS.pdf" class="btn btn-primary" data-aos="fade-up" data-aos-delay="300"><i class="bi bi-file-earmark-pdf-fill me-2"></i> Google Docs.pdf</a>
-                    <a href="downloads/GooglePlanilhas.pdf" class="btn btn-primary" data-aos="fade-up" data-aos-delay="350"><i class="bi bi-file-earmark-pdf-fill me-2"></i> Google Planilhas.pdf</a>
-                    <a href="downloads/Canva.pdf" class="btn btn-primary" data-aos="fade-up" data-aos-delay="400"><i class="bi bi-file-earmark-pdf-fill me-2"></i> Canva.pdf</a>
-                    <a href="downloads/GovBR.pdf" class="btn btn-primary" data-aos="fade-up" data-aos-delay="450"><i class="bi bi-file-earmark-pdf-fill me-2"></i> Gov.br.pdf</a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-
-    <footer class="text-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <h5>Portfólio Inclusão Digital</h5>
-                    <p>Facilitando o acesso à tecnologia e abrindo novas portas para a comunidade.</p>
-                </div>
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <h5>Links Rápidos</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#inicio">Início</a></li>
-                        <li><a href="#sobre-projeto">Sobre o Projeto</a></li>
-                        <li><a href="#conteudo">Conteúdo</a></li>
-                        <li><a href="#depoimentos">Depoimentos</a></li>
-                        <li><a href="#downloads">Downloads</a></li>
-                        <li><a href="#contato">Contato</a></li> </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Conecte-se</h5>
-                    <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/lucas-vinícius-3102a22b4" target="_blank" class="me-2"><i class="bi bi-linkedin"></i></a>
-                        <a href="https://github.com/LucasdevBastos" target="_blank"><i class="bi bi-github"></i></a>
-                    </div>
-                    <p class="mt-3 mb-0">Desenvolvido com ❤️ por Lucas Vinicius.<br>&copy; 2025 Portfólio Inclusão Digital. Todos os direitos reservados.</p>
-                </div>
-            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+    <!-- onda separadora -->
+    <svg class="wave-top" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"><path fill="#fff" d="M0,64L48,64C96,64,192,64,288,90.7C384,117,480,171,576,186.7C672,203,768,181,864,149.3C960,117,1056,75,1152,80C1248,85,1344,139,1392,165.3L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"/></svg>
+  </header><!-- TURMA -->
+  <section id="turma">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6 order-lg-2" data-aos="fade-left">
+          <div id="carouselTurma" class="carousel slide frame" data-bs-ride="carousel" data-bs-interval="6500">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="img/Turma1.jpg" class="d-block w-100" alt="Apresentações da Turma" height="420" style="object-fit:cover;" loading="lazy">
+                <div class="carousel-caption"><h5>Turma 1</h5></div>
+              </div>
+              <div class="carousel-item">
+                <img src="img/Turma2.jpg" class="d-block w-100" alt="Aula prática" height="420" style="object-fit:cover;" loading="lazy">
+                <div class="carousel-caption"><h5>Turma 2</h5></div>
+              </div>
+              <div class="carousel-item">
+                <img src="img/Turma3.jpg" class="d-block w-100" alt="Encerramento" height="420" style="object-fit:cover;" loading="lazy">
+                <div class="carousel-caption"><h5>Turma 3</h5></div>
+              </div>
+            </div>
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselTurma" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselTurma" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselTurma" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-right">
+          <h2 class="section-title">Nossa Turma em Foco</h2>
+          <p class="mb-3">Uma jornada colaborativa com protagonismo dos alunos e apoio de monitores dedicados.</p>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <div class="card-elev h-100">
+                <div class="icon"><i class="bi bi-person-video3"></i></div>
+                <h5 class="mb-1">A Professora</h5>
+                <p class="mb-0">Ana Caroline de Sá e Silva conduziu cada passo com didática e acolhimento.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card-elev h-100">
+                <div class="icon"><i class="bi bi-people-fill"></i></div>
+                <h5 class="mb-1">Monitores</h5>
+                <p class="mb-0">Lucas Vinicius, Renê Faustinom, Alysson Mikael e Graciany Maria — suporte constante.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100,
-            disable: 'mobile' 
-        });
+  <!-- SOBRE O PROJETO -->
+  <section id="sobre" style="background: var(--cor-secundaria)">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6" data-aos="fade-right">
+          <h2 class="section-title">O Projeto de Inclusão Digital</h2>
+          <p class="lead">Primeira edição de um sonho: levar competências essenciais de informática à comunidade, gratuitamente e com acolhimento.</p>
+          <p>Acreditamos que a tecnologia amplia oportunidades e autonomia. Este portfólio reúne materiais para continuar aprendendo.</p>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="ratio ratio-9x16 frame">
+            <video controls poster="img/capa-video.jpg" src="video/Video.mp4" type="video/mp4" preload="metadata" controlslist="nodownload" style="width:100%; height:100%; object-fit:cover" title="Vídeo sobre o projeto">
+              Seu navegador não suporta vídeo.
+            </video>
+          </div>
+          <p class="text-muted small mt-2">Assista para conhecer os bastidores e destaques.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        function loadYouTubeVideos() {
-            const videoContainers = document.querySelectorAll('.youtube-lazyload');
-            
-            videoContainers.forEach(container => {
-                container.addEventListener('click', function() {
-                    if (this.classList.contains('loaded')) return;
+  <!-- CONTEÚDO -->
+  <section id="conteudo">
+    <div class="container">
+      <h2 class="section-title text-center" data-aos="fade-up">O que nós ensinamos</h2>
+      <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-md-4">
+          <div class="card-elev">
+            <div class="icon"><i class="bi bi-cpu"></i></div>
+            <h5>Hardware</h5>
+            <p>Partes físicas do computador: CPU, RAM, armazenamento, periféricos e como interagem.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-elev">
+            <div class="icon"><i class="bi bi-window"></i></div>
+            <h5>Software</h5>
+            <p>Sistemas operacionais, aplicativos e noções de instalação, atualização e segurança.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-elev">
+            <div class="icon"><i class="bi bi-globe2"></i></div>
+            <h5>Internet</h5>
+            <p>Navegação, pesquisas eficientes e boas práticas de cidadania e segurança digital.</p>
+          </div>
+        </div>
+      </div>
 
-                    const videoId = this.getAttribute('data-embed');
-                    const iframe = document.createElement('iframe');
-                    
-                    iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
-                    iframe.setAttribute('frameborder', '0');
-                    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-                    iframe.setAttribute('allowfullscreen', '');
-                    iframe.setAttribute('title', 'YouTube video player');
-                    iframe.style.position = 'absolute';
-                    iframe.style.top = '0';
-                    iframe.style.left = '0';
-                    iframe.style.width = '100%';
-                    iframe.style.height = '100%';
-                    iframe.style.borderRadius = '12px';
+      <hr class="my-5" />
 
-                    this.appendChild(iframe);
-                    this.classList.add('loaded');
-                });
-            });
-        }
-        document.addEventListener('DOMContentLoaded', loadYouTubeVideos);
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="card-elev h-100">
+            <h4 class="mb-2"><i class="bi bi-file-earmark-text-fill me-2 text-primary"></i>Google Docs</h4>
+            <p class="mb-3">Editor online para currículos, trabalhos e relatórios com salvamento automático na nuvem.</p>
+            <ul class="mb-4">
+              <li>Formatação de texto, estilos e revisão</li>
+              <li>Imagens, links e comentários</li>
+              <li>Colaboração em tempo real</li>
+            </ul>
+            <a href="downloads/GOOGLE DOCS.pdf" class="btn btn-primary"><i class="bi bi-cloud-arrow-down me-2"></i>Baixar guia</a>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="ratio ratio-16x9 frame">
+            <iframe src="https://www.youtube.com/embed/qzh5uwUjzlw" title="Tutorial Google Docs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
 
-        window.onload = function () {
-            if (history.scrollRestoration) {
-                history.scrollRestoration = 'manual';
-            } else {
-                window.onbeforeunload = function () {
-                    window.scrollTo(0, 0);
-                }
-            }
-            window.scrollTo(0,0);
-        }
-    </script>
+      <div class="row g-4 align-items-center mt-4">
+        <div class="col-lg-6 order-lg-2" data-aos="fade-left">
+          <div class="card-elev h-100">
+            <h4 class="mb-2"><i class="bi bi-grid-3x3-gap-fill me-2 text-primary"></i>Google Planilhas</h4>
+            <p class="mb-3">Organize informações, crie listas e faça cálculos com fórmulas.</p>
+            <ul class="mb-4">
+              <li>Referências, auto-preenchimento e validação</li>
+              <li>Funções básicas e formatação condicional</li>
+              <li>Gráficos e filtros</li>
+            </ul>
+            <a href="downloads/GooglePlanilhas.pdf" class="btn btn-primary"><i class="bi bi-cloud-arrow-down me-2"></i>Baixar guia</a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1" data-aos="fade-right">
+          <div class="ratio ratio-16x9 frame">
+            <iframe src="https://www.youtube.com/embed/ZsQEWyipvNs" title="Tutorial Google Planilhas" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 align-items-center mt-4">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="card-elev h-100">
+            <h4 class="mb-2"><i class="bi bi-palette-fill me-2 text-primary"></i>Canva</h4>
+            <p class="mb-3">Crie posts, convites e apresentações com modelos prontos e edição simples.</p>
+            <ul class="mb-4">
+              <li>Modelos e tipografia</li>
+              <li>Imagens, elementos e camadas</li>
+              <li>Exportação em PNG e PDF</li>
+            </ul>
+            <a href="downloads/Canva.pdf" class="btn btn-primary"><i class="bi bi-cloud-arrow-down me-2"></i>Baixar guia</a>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="ratio ratio-16x9 frame">
+            <iframe src="https://www.youtube.com/embed/31I3lxhWp08" title="Tutorial Canva" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 align-items-center mt-4">
+        <div class="col-lg-6 order-lg-2" data-aos="fade-left">
+          <div class="card-elev h-100">
+            <h4 class="mb-2"><i class="bi bi-shield-check me-2 text-primary"></i>Gov.br</h4>
+            <p class="mb-3">Acesso unificado a serviços públicos digitais (INSS, Carteira de Trabalho e mais).</p>
+            <ul class="mb-4">
+              <li>Conta com níveis Bronze, Prata e Ouro</li>
+              <li>Verificação e segurança</li>
+              <li>App Gov.br</li>
+            </ul>
+            <a href="downloads/GovBR.pdf" class="btn btn-primary"><i class="bi bi-cloud-arrow-down me-2"></i>Baixar guia</a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1" data-aos="fade-right">
+          <div class="ratio ratio-16x9 frame">
+            <iframe src="https://www.youtube.com/embed/Z9vdkqaukr0" title="Tutorial Gov.br" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section id="depoimentos" style="background: var(--cor-secundaria);">
+    <div class="container">
+      <h2 class="section-title text-center" data-aos="fade-up">A voz dos alunos</h2>
+      <div class="row g-4">
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="50">
+          <div class="card-elev">
+            <p class="fst-italic">"Foi uma experiência ótima, cheia de aprendizados e momentos especiais..."</p>
+            <p class="fw-bold mb-0">— Marly Pereira de Lima Souza</p>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-elev">
+            <p class="fst-italic">"Aulas bem planejadas e cheias de aprendizado. Vou guardar com carinho."</p>
+            <p class="fw-bold mb-0">— Maria Mirella de Souza Silva</p>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
+          <div class="card-elev">
+            <p class="fst-italic">"Fundamental para meu crescimento pessoal e profissional. Sou grata!"</p>
+            <p class="fw-bold mb-0">— Aila Kássia de Souza Santos</p>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-elev">
+            <p class="fst-italic">"Depois de muitos anos, consegui me atualizar em informática. Muito proveitoso!"</p>
+            <p class="fw-bold mb-0">— Wila Tamara Santos Silva</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOADS -->
+  <section id="downloads">
+    <div class="container">
+      <h2 class="section-title text-center" data-aos="fade-up"><i class="bi bi-cloud-arrow-down-fill me-2 text-primary"></i>Central de Downloads</h2>
+      <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="50">Baixe os guias em PDF utilizados em sala.</p>
+
+      <div class="row g-3" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-sm-6 col-lg-4">
+          <div class="card-elev h-100 d-flex flex-column">
+            <div class="d-flex align-items-center mb-2"><i class="bi bi-file-earmark-pdf fs-4 me-2 text-primary"></i><h6 class="mb-0">Informática Básica</h6></div>
+            <p class="text-muted small mb-3">Conceitos de hardware, software e internet.</p>
+            <a href="downloads/InformaticaBasica.pdf" class="btn btn-primary mt-auto"><i class="bi bi-download me-2"></i>Baixar PDF</a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="card-elev h-100 d-flex flex-column">
+            <div class="d-flex align-items-center mb-2"><i class="bi bi-file-earmark-pdf fs-4 me-2 text-primary"></i><h6 class="mb-0">Google Docs</h6></div>
+            <p class="text-muted small mb-3">Formatação, colaboração e inserções.</p>
+            <a href="downloads/GOOGLE DOCS.pdf" class="btn btn-primary mt-auto"><i class="bi bi-download me-2"></i>Baixar PDF</a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="card-elev h-100 d-flex flex-column">
+            <div class="d-flex align-items-center mb-2"><i class="bi bi-file-earmark-pdf fs-4 me-2 text-primary"></i><h6 class="mb-0">Google Planilhas</h6></div>
+            <p class="text-muted small mb-3">Fórmulas, filtros e gráficos básicos.</p>
+            <a href="downloads/GooglePlanilhas.pdf" class="btn btn-primary mt-auto"><i class="bi bi-download me-2"></i>Baixar PDF</a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="card-elev h-100 d-flex flex-column">
+            <div class="d-flex align-items-center mb-2"><i class="bi bi-file-earmark-pdf fs-4 me-2 text-primary"></i><h6 class="mb-0">Canva</h6></div>
+            <p class="text-muted small mb-3">Modelos, elementos e exportação.</p>
+            <a href="downloads/Canva.pdf" class="btn btn-primary mt-auto"><i class="bi bi-download me-2"></i>Baixar PDF</a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="card-elev h-100 d-flex flex-column">
+            <div class="d-flex align-items-center mb-2"><i class="bi bi-file-earmark-pdf fs-4 me-2 text-primary"></i><h6 class="mb-0">Gov.br</h6></div>
+            <p class="text-muted small mb-3">Conta, níveis e segurança.</p>
+            <a href="downloads/GovBR.pdf" class="btn btn-primary mt-auto"><i class="bi bi-download me-2"></i>Baixar PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO CTA -->
+  <section id="contato" style="padding: 0 0 80px;">
+    <div class="container">
+      <div class="cta-section" data-aos="zoom-in">
+        <div class="row align-items-center g-3">
+          <div class="col-lg-8">
+            <h2 class="mb-2">Entre em contato</h2>
+            <p class="mb-0">Gostou do projeto e quer saber mais? Conecte-se conosco nas redes abaixo!</p>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <a class="btn btn-light text-dark fw-bold me-2" href="https://www.linkedin.com/in/lucas-vinícius-3102a22b4" target="_blank"><i class="bi bi-linkedin me-2"></i>LinkedIn</a>
+            <a class="btn btn-outline-light fw-bold" href="https://github.com/LucasdevBastos" target="_blank"><i class="bi bi-github me-2"></i>GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold">Portfólio Inclusão Digital</h5>
+          <p class="mb-0">Facilitando o acesso à tecnologia e abrindo novas portas para a comunidade.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold">Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#turma">Turma</a></li>
+            <li><a href="#sobre">Sobre o Projeto</a></li>
+            <li><a href="#conteudo">Conteúdo</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#downloads">Downloads</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 class="fw-bold">Conecte-se</h5>
+          <div class="d-flex gap-3 fs-4">
+            <a href="https://www.linkedin.com/in/lucas-vinícius-3102a22b4" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="https://github.com/LucasdevBastos" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
+          </div>
+          <p class="mt-3 mb-0 small">Desenvolvido com ❤️ por Lucas Vinicius.<br>© 2025 Portfólio Inclusão Digital.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 650, once: true, offset: 120, throttleDelay: 150, debounceDelay: 150 });
+
+    // Navbar sombra ao rolar
+    const nav = document.querySelector('.navbar');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  </script>
 </body>
 </html>
